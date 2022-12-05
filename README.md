@@ -1,2 +1,82 @@
-# artframework-orm-stater
-一个基于mybatis-plus框架开发的ORM扩展框架，目标是通过配置的方式解决业务中需要增加字段的问题
+# 动态ORM框架
+一个基于mybatis-plus框架开发的ORM扩展框架，实现全链路从接口入参到数据库入库的操作。
+
+# 原理
+1. 在spring boot应用启动前加载orm.xml配置文件配置
+2. 基于动态代理的方式实现对mybatis plus的数据类进行动态代理并替换jvm中原本的数据表类
+3. Mybatis plus解析数据类时加载到的实际类位代理后的类，实现对Mybatis plus的默认支持的sql的修改
+4. 通过`@JsonAnySetter`和`@JsonAnyGetter`注解将请求中未mapping到实体属性的字段赋值到字段`feature` 的map中
+5. 通过代理类中新增的数据库字段的代理`get`方法实现从`feature` map中读取属性并插入到数据库
+6. 基于对Spring mvc的改造同样支持GET请求中的未映射的字段赋值到字段`feature` 的map中
+
+# 约束
+1. VO类需要继承BaseVO
+2. DO类需要继承BaseDO
+3. 需要确保数据传递过程中所有的DTO类继承BaseDTO,已保证从VO->DO过程中的数据能够正确的传递
+
+# 样例
+## 原始代码中表结构如下
+```
+@TableName(value = "tbl_user_info",autoResultMap = true)
+public class UserInfoDo extends BaseDO {
+    /**
+     *
+     */
+    @TableId
+    @TableField("id")
+    private Long id;
+
+    @TableField("user_name")
+    private String userName;
+
+    @TableField("nick_name")
+    private String nickName;
+
+    @TableField("password")
+    private String password;
+
+    @TableField("status")
+    private int status;
+}
+```
+## 数据库表新增字段name和address
+```
+CREATE TABLE `tbl_user_info` (
+   `id` bigint(11) NOT NULL AUTO_INCREMENT,
+   `user_name` varchar(255) DEFAULT NULL,
+   `nick_name` varchar(255) DEFAULT NULL,
+   `password` varchar(255) DEFAULT NULL,
+   `feature` json DEFAULT NULL,
+   `name` varchar(255) DEFAULT NULL,
+   `address` varchar(255) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+```
+
+
+## 配置ORM.XML配置文件（支持jar包外部配置）
+```
+<tables>
+     <table type="com.example.demo.dataobject.UserInfoDo">
+         <column name="name" type="java.lang.String"/>
+         <column name="address" type="java.lang.String"/>
+     </table>
+ </tables>
+```
+
+## 调用增加用户接口增加name 和address入参
+<center>
+    <img style="border-radius: 20px;"
+         src="./png/新增.png" 
+         alt="新增"
+         width="861" >
+</center>
+
+## 查询
+<center>
+    <img style="border-radius: 20px;"
+         src="./png/查询.png" 
+         alt="查询"
+         width="872" >
+</center>
+

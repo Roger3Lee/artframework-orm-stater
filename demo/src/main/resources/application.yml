@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-bp1g5o2r79bs4c505-p.mysql.rds.aliyuncs.com:3306/zh_uhc?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&autoReconnect=true&failOverReadOnly=false
+    username: user01
+    password: Vl20Bmbi
+
+
+mybatis-plus:
+  mapper-locations:
+    - classpath*:mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: AUTO
+server:
+  port: 8081

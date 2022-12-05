@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Import(value = ArtMyBatisPlusAutoConfiguration.class)
-public @interface EnableMybatisExtension {
+public @interface EnableORMExtension {
 }

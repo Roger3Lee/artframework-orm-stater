@@ -1,0 +1,6 @@
+<tables>
+    <table type="com.example.demo.dataobject.UserInfoDo">
+        <column name="name" type="java.lang.String"/>
+        <column name="address" type="java.lang.String"/>
+    </table>
+</tables>
