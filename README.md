@@ -57,7 +57,7 @@ CREATE TABLE `tbl_user_info` (
 ```
 
 
-## 配置ORM.XML配置文件（支持jar包外部配置）
+## ORM.XML配置文件（支持jar包外部配置）
 ```
 <tables>
      <table type="com.example.demo.dataobject.UserInfoDo">
