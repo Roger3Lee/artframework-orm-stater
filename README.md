@@ -1,0 +1,2 @@
+# artframework-orm-stater
+一个基于mybatis-plus框架开发的ORM扩展框架，目标是通过配置的方式解决业务中需要增加字段的问题
