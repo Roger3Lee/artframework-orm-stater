@@ -70,7 +70,7 @@ CREATE TABLE `tbl_user_info` (
 ## 调用增加用户接口增加name 和address入参
 <center>
     <img style="border-radius: 20px;"
-         src="/png/新增.png" 
+         src="https://github.com/Roger3Lee/artframework-orm-stater/tree/master/png/新增.png" 
          alt="新增"
          width="861" >
 </center>
@@ -78,7 +78,7 @@ CREATE TABLE `tbl_user_info` (
 ## 查询
 <center>
     <img style="border-radius: 20px;"
-         src="/png/查询.png" 
+         src="https://github.com/Roger3Lee/artframework-orm-stater/tree/master/png/查询.png" 
          alt="查询"
          width="872" >
 </center>
