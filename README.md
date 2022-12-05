@@ -68,20 +68,10 @@ CREATE TABLE `tbl_user_info` (
 ```
 
 ## 调用增加用户接口增加name 和address入参
-<center>
-    <img style="border-radius: 20px;"
-         src="https://github.com/Roger3Lee/artframework-orm-stater/tree/master/png/新增.png" 
-         alt="新增"
-         width="861" >
-</center>
+!image(https://github.com/Roger3Lee/artframework-orm-stater/tree/master/png/新增.png）
 
 ## 查询
-<center>
-    <img style="border-radius: 20px;"
-         src="https://github.com/Roger3Lee/artframework-orm-stater/tree/master/png/查询.png" 
-         alt="查询"
-         width="872" >
-</center>
+!image(https://github.com/Roger3Lee/artframework-orm-stater/tree/master/png/查询.png）
 
 # Next
 1. 支持对orm.xml配置字段的校验
