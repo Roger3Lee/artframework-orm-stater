@@ -20,6 +20,7 @@
 3. 需要确保数据传递过程中所有的DTO类继承BaseDTO,已保证从VO->DO过程中的数据能够正确的传递
 
 # 样例
+演示在用户数据模型下，通过修改orm.xml配置增加name和address属性以支持name和address的数据存储
 ## 原始代码中表结构如下
 ```
 @TableName(value = "tbl_user_info",autoResultMap = true)
