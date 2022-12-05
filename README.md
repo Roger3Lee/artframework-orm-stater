@@ -1,6 +1,11 @@
 # 动态ORM框架
 一个基于mybatis-plus框架开发的ORM扩展框架，实现全链路从接口入参到数据库入库的操作。
 
+# 为什么会存在？
+成熟问题的产品的数据模型已经稳定，但在实际推广过程中总存在一些数据模型上的定开需求，例如增加额外的参考字段等。这些字段往往只是用来做存储展示，并不存在业务逻辑。
+传统方法下我们需要修改产品代码来满足客户需求。
+基于以上情况，需要可以通过配置的方式实现从接口层到数据存储层的动态实现方式。
+
 # 原理
 1. 在spring boot应用启动前加载orm.xml配置文件配置
 2. 基于动态代理的方式实现对mybatis plus的数据类进行动态代理并替换jvm中原本的数据表类
@@ -34,9 +39,6 @@ public class UserInfoDo extends BaseDO {
 
     @TableField("password")
     private String password;
-
-    @TableField("status")
-    private int status;
 }
 ```
 ## 数据库表新增字段name和address
@@ -80,3 +82,5 @@ CREATE TABLE `tbl_user_info` (
          width="872" >
 </center>
 
+# Next
+1. 支持对orm.xml配置字段的校验
