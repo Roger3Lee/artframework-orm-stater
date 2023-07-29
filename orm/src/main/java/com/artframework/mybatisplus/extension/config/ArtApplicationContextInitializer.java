@@ -53,13 +53,13 @@ public class ArtApplicationContextInitializer implements ApplicationContextIniti
 
             return tableConfiguration;
         } catch (JAXBException | IOException e) {
-            log.error("load inner orm.xml config file failed.", e);
+            log.warn("load inner orm.xml config file failed.");
         } finally {
             if (null != stream) {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.warn("getInnerConfig error");
                 }
             }
 
@@ -82,18 +82,16 @@ public class ArtApplicationContextInitializer implements ApplicationContextIniti
             String pathName = jarPath + FILE_NAME;
 
              fis = new FileInputStream(pathName);
-            TableConfiguration tableConfiguration = getConfiguration(fis);
 
-
-            return tableConfiguration;
+            return getConfiguration(fis);
         } catch (JAXBException | IOException e) {
-            log.error("load outer orm.xml config file failed.", e);
+            log.warn("load outer orm.xml config file failed.");
         }finally {
             if (null != fis) {
                 try {
                     fis.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    log.warn("getOuterConfig error");
                 }
             }
         }
@@ -101,6 +99,9 @@ public class ArtApplicationContextInitializer implements ApplicationContextIniti
     }
 
     private TableConfiguration getConfiguration(InputStream stream) throws JAXBException {
+        if(null==stream){
+            return null;
+        }
         JAXBContext context = JAXBContext.newInstance(TableConfiguration.class, TableConfiguration.Table.class, TableConfiguration.Table.TableColumn.class);    // 获取上下文对象
         Unmarshaller unmarshaller = context.createUnmarshaller(); // 根据上下文获取marshaller对象
         return  (TableConfiguration) unmarshaller.unmarshal(stream);
